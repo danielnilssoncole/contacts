@@ -36,8 +36,7 @@ def populate():
         c = add_contact(first, last, phone, email)
 
     for c in Contact.objects.all():
-        print('- {0} - {1} - {2} - {3}'.format(c.first_name, 
-                                         c.last_name,
+        print('- {0} - {1} - {2}'.format(c.full_name,
                                          c.phone_number,
                                          c.email))
 
@@ -45,6 +44,7 @@ def add_contact(first, last, phone, email):
     c = Contact.objects.get_or_create(phone_number=phone, email=email)[0]
     c.first_name = first
     c.last_name = last
+    c.full_name = '{0}{1}{2}'.format(first, ' ', last)
     c.save()
     return c
 

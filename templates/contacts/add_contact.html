@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Contacts</title>
+  </head>
+  <body>
+    <h1>Add a Contact</h1>
+    <div>
+      <form action="/contacts/add_contact/" method="post">
+        {% csrf_token %}
+        {% for hidden in form.hidden_fields %}
+          {{ hidden }}
+        {% endfor%}
+        {% for field in form.visible_fields %}
+          {{ field.errors }}
+          {{ field.help_text }}
+          {{ field }}<br>
+        {% endfor %}
+        <input type="submit" name="submit" value="Create Contact">
+      </form>
+    </div>
+  </body>
+</html>

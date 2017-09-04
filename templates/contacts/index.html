@@ -1,28 +1,25 @@
-<!DOCTYPE html>
+{% extends 'contacts/base.html' %}
 {% load staticfiles %}
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Contacts</title>
-  </head>
-  <body>
-    <h1>Contacts</h1>
-    <div class="">
-      {% if contacts %}
-        <ul>
-          {% for contact in contacts %}
-            <li>
-              <a href="{% url 'contacts:show_contact' contact.id %}">
-                {{ contact.first_name }} {{ contact.last_name }}
-              </a>
-            </li>
-          {% endfor %}
-        </ul>
-      {% else %}
-        <p>There are no contacts present.</p>
-      {% endif %}
-    </div>
-    <!-- <img src="{% static 'images/earth.jpg' %}" alt="earth" style="width: 300px;"> -->
-    <a href="{% url 'contacts:add_contact' %}">Add Contact</a>
-  </body>
-</html>
+
+{% block title_block %}
+  Home
+{% endblock %}
+
+{% block body_block %}
+  <h1>Contacts</h1>
+  <div class="">
+    {% if contacts %}
+      <ul>
+        {% for contact in contacts %}
+          <li>
+            <a href="{% url 'contacts:show_contact' contact.id %}">
+              {{ contact.first_name }} {{ contact.last_name }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>There are no contacts present.</p>
+    {% endif %}
+  </div>
+{% endblock %}
